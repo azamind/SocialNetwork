@@ -13,6 +13,7 @@ using Microsoft.OpenApi.Models;
 using SocialNetworkProject.Data;
 using SocialNetworkProject.Extensions;
 using SocialNetworkProject.Interfaces;
+using SocialNetworkProject.Middlewares;
 using SocialNetworkProject.Services;
 using System.Text;
 
@@ -45,12 +46,17 @@ namespace SocialNetworkProject
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // this middleware created for example
+            //app.UseMiddleware<ExceptionMiddleware>();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SocialNetworkProject v1"));
             }
+
+           
 
             app.UseHttpsRedirection();
 
