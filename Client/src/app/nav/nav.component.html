@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container">
     <a class="navbar-brand" routerLink="/" routerLinkActive="active">SocialNetworkProject</a>
-      <ul class="navbar-nav mr-auto" *ngIf="accountService.currentUser$ | async">
+      <ul class="navbar-nav mr-auto" *ngIf="isAuth">
         <ng-container *ngIf="accountService.currentUser$ | async">
           <li class="nav-item">
             <a class="nav-link" routerLink="/members" routerLinkActive="active">Matches</a>
@@ -15,7 +15,7 @@
         </ng-container>
       </ul>
 
-      <div class="dropdown" *ngIf="accountService.currentUser$ | async" dropdown>
+      <div class="dropdown" *ngIf="isAuth" dropdown>
         <a class="dropdown-toggle text-light" dropdownToggle>Welcome!</a>
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <a class="dropdown-item">Edit Profile</a>
@@ -25,7 +25,7 @@
       </div>
 
       <form
-            *ngIf="(accountService.currentUser$ | async) == undefined || (accountService.currentUser$ | async) == null"
+            *ngIf="!isAuth"
             #loginForm="ngForm"
             class="form-inline mt-2 mt-md-0"
             (ngSubmit)="login()"

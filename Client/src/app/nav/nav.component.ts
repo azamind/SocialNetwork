@@ -10,6 +10,7 @@ import { AccountService } from './../_services/account.service';
 })
 export class NavComponent implements OnInit {
   model: any = {};
+  isAuth!: boolean;
 
   constructor(
     public accountService: AccountService,
@@ -18,17 +19,20 @@ export class NavComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isAuth = localStorage.getItem('user') != null ? true : false;
   }
 
   login() {
     return this.accountService.login(this.model).subscribe(response => {
       this.router.navigateByUrl('/members');
+      this.isAuth = true;
     });
   }
 
   logout() {
     this.accountService.logout();
     this.router.navigateByUrl('/');
+    this.isAuth = false;
   }
 
 }
