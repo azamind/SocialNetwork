@@ -1,5 +1,4 @@
-﻿
-namespace SocialNetworkProject.Exceptions
+﻿namespace SocialNetworkProject.Exceptions
 {
     public class ApiException
     {
