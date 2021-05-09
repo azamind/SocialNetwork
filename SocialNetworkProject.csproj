@@ -27,6 +27,10 @@
     <TypeScriptCompile Include="Client\src\app\_models\user.ts" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Client\src\app\_interceptors\" />
+  </ItemGroup>
+
   <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
