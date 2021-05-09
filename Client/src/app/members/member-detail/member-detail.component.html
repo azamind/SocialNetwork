@@ -45,7 +45,16 @@
         <p>{{member.interest}}</p>
       </tab>
       <tab heading="Photos">
-        <p>Photos will go here</p>
+        <div *ngIf="member.photoUrl">
+          <div *ngFor="let photo of member.photos">
+            <img
+                  src="{{photo.url || './assets/user.png' }}"
+                  alt="{{member.knownAs}}"
+                  class="card-img-top img-thumbnail"
+                  style="width:200px; height:100%;"
+            />
+          </div>
+        </div>
       </tab>
       <tab heading="Messages">
         <p>Messages will go here</p>
