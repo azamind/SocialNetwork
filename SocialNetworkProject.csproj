@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <None Remove="Client\src\app\_models\user.ts" />
+    <None Remove="Client\src\app\_modules\member.ts" />
+    <None Remove="Client\src\app\_modules\photo.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -26,6 +28,8 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="Client\src\app\_models\user.ts" />
+    <TypeScriptCompile Include="Client\src\app\_modules\member.ts" />
+    <TypeScriptCompile Include="Client\src\app\_modules\photo.ts" />
   </ItemGroup>
 
   <ItemGroup>
