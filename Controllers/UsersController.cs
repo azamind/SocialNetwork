@@ -35,7 +35,7 @@ namespace SocialNetworkProject.Controllers
             return Ok(await _userRepository.GetMembersAsync());
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("{username}", Name = "GetUser")]
         public async Task<ActionResult<MemberDTO>> GetUser(string username)
         {
             return await _userRepository.GetMemberAsync(username);
@@ -55,6 +55,7 @@ namespace SocialNetworkProject.Controllers
             return BadRequest("Failed to update user.");
         }
 
+        [HttpPost("add-photo")]
         public async Task<ActionResult<PhotoDTO>> AddPhoto(IFormFile file)
         {
             var user = await _userRepository.GetUserByUsernameAsync(User.GetUserName());
@@ -77,7 +78,10 @@ namespace SocialNetworkProject.Controllers
             user.Photos.Add(photo);
 
             if (await _userRepository.SaveAllAsync())
-                return _mapper.Map<PhotoDTO>(photo);
+            {
+                return CreatedAtRoute("GetUser", new { username = user.UserName }, _mapper.Map<PhotoDTO>(photo));
+            }
+                
 
             return BadRequest("Problem adding photo.");
         }
