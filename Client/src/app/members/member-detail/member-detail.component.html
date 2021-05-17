@@ -46,12 +46,12 @@
       </tab>
       <tab heading="Photos">
         <div *ngIf="member.photoUrl">
-          <div *ngFor="let photo of member.photos">
+          <div *ngFor="let photo of member.photos" style="display: inline-block;">
             <img
                   src="{{photo.url || './assets/user.png' }}"
                   alt="{{member.knownAs}}"
                   class="card-img-top img-thumbnail"
-                  style="width:200px; height:100%;"
+                  style="width:150px; height:100%;"
             />
           </div>
         </div>
