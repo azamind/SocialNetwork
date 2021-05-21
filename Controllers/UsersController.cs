@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using SocialNetworkProject.DTOs;
 using SocialNetworkProject.Entities;
 using SocialNetworkProject.Extensions;
+using SocialNetworkProject.Helpers;
 using SocialNetworkProject.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,9 +32,13 @@ namespace SocialNetworkProject.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDTO>>> GetUsers([FromQuery]UserParams userParams)
         {
-            return Ok(await _userRepository.GetMembersAsync());
+            var users = await _userRepository.GetMembersAsync(userParams);
+
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPage);
+
+            return Ok(users);
         }
 
         [HttpGet("{username}", Name = "GetUser")]

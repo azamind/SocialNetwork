@@ -3,6 +3,7 @@ using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using SocialNetworkProject.DTOs;
 using SocialNetworkProject.Entities;
+using SocialNetworkProject.Helpers;
 using SocialNetworkProject.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -30,11 +31,12 @@ namespace SocialNetworkProject.Data
                 .SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<MemberDTO>> GetMembersAsync()
+        public async Task<Pagination<MemberDTO>> GetMembersAsync(UserParams userParams)
         {
-            return await _context.Users
+            var query = _context.Users
                 .ProjectTo<MemberDTO>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+                .AsNoTracking();
+            return await Pagination<MemberDTO>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
