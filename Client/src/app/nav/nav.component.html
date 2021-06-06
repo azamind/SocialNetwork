@@ -17,7 +17,7 @@
 
       <div class="dropdown" *ngIf="isAuth" dropdown>
         <img src="{{ user.photoUrl || 'https://via.placeholder.com/150' }}" alt="{{ user.userName }}"  class="rounded-circle"/>
-        <a class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome!</a>
+        <a class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{ user.knownAs }}</a>
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
           <div class="dropdown-divider"></div>
